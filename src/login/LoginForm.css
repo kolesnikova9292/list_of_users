@@ -1,0 +1,21 @@
+.divForForm {
+  margin: 0 auto;
+  width: 340px;
+  margin-top: 10%;
+}
+
+.cardForForm {
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+.textFieldForLoginForm {
+  margin-bottom: 5% !important;
+}
+
+@media screen and (max-width: 800px) {
+  .divForForm {
+    margin-top: 30% !important;
+  }
+}
