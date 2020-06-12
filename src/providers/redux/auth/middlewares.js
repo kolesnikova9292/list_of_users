@@ -5,7 +5,7 @@ export const loftTaxiMiddleware = (store) => (next) => async (action) => {
   if (action.type === fetchAuthRequest.toString()) {
     await axios
       .post(
-        "http://emphasoft-test-assignment.herokuapp.com/api-token-auth/",
+        "https://emphasoft-test-assignment.herokuapp.com/api-token-auth/",
         {
           username: action.payload.login,
           password: action.payload.password,

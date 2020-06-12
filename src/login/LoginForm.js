@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchAuthRequest } from "../providers/redux/auth";
 import { useForm } from "react-hook-form";
 import { RHFInput } from "react-hook-form-input";
-import Card from "@material-ui/core/Card";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import { getAuthFlag } from "../providers/redux/auth";
-import { getError } from "../providers/redux/auth";
-import Snackbar from "@material-ui/core/Snackbar";
+import { Card, Button, TextField, Snackbar } from "@material-ui/core";
+import {
+  getAuthFlag,
+  getError,
+  fetchAuthRequest,
+} from "../providers/redux/auth";
 import "./LoginForm.css";
 
 const LoginForm = (props) => {
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
   const { register, handleSubmit, errors, setValue } = useForm();
   const { fetchAuthRequest, isAuthorized, error } = props;
   const [open, setOpen] = useState(false);
@@ -21,20 +18,11 @@ const LoginForm = (props) => {
   useEffect(() => {
     setValue("login", "test_super");
     setValue("password", "Nf<U4f<rDbtDxAPn");
-    /*if (isAuthorized === true) {
-      props.history.push("/table");
-    }*/
-    console.log(1111111);
+
     if (error != null) {
       setOpen(true);
     }
   }, [isAuthorized, error, setValue]);
-
-  /*const handleLogIn = async (event) => {
-    event.preventDefault();
-    await fetchAuthRequest({ login, password });
-    props.history.push("/table");
-  };*/
 
   const handleLogIn = async (data) => {
     const { login, password } = data;
@@ -45,14 +33,6 @@ const LoginForm = (props) => {
   const handleCloseSnackBar = () => {
     setOpen(false);
   };
-
-  /*const handleChangeLogin = (event) => {
-    setLogin(event.target.value);
-  };
-
-  const handleChangePassword = (event) => {
-    setPassword(event.target.value);
-  };*/
 
   return (
     <div className="divForForm">
@@ -94,32 +74,6 @@ const LoginForm = (props) => {
             setValue={setValue}
           />
           <br />
-          {/*<TextField
-        className="textFieldForLoginForm"
-        label="Логин"
-        color="secondary"
-        type="text"
-        name="login"
-        error={errors.login != null ? true : false}
-        inputRef={register({
-          required: true,
-          pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
-        })}
-        helperText={returnError(errors.login)}
-        setValue={setValue}
-      />
-      <br />
-      <TextField
-        label="Пароль"
-        color="secondary"
-        type="text"
-        name="password"
-        className="textFieldForLoginForm"
-        inputRef={register({ required: true })}
-        error={errors.password != null ? true : false}
-        helperText={returnError(errors.password)}
-      />
-      <br />*/}
           <Button type="submit" value="Войти">
             Войти
           </Button>
@@ -140,39 +94,6 @@ const LoginForm = (props) => {
     </div>
   );
 };
-
-/*return (
-    <>
-      <form onSubmit={handleLogIn}>
-        <div>
-          <label>
-            Логин:
-            <input
-              type="text"
-              value={login}
-              name="login"
-              onChange={handleChangeLogin}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Пароль:
-            <input
-              type="text"
-              name="password"
-              value={password}
-              onChange={handleChangePassword}
-            />
-          </label>
-        </div>
-        <div>
-          <input type="submit" value="Войти" />
-        </div>
-      </form>
-    </>
-  );
-};*/
 
 const mapDispatchToProps = { fetchAuthRequest };
 

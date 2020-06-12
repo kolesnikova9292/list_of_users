@@ -1,5 +1,5 @@
 import React from "react";
-import TableInner from "./Table";
+import TableInner from "./TableInner";
 
 export const Table = (props) => {
   return (

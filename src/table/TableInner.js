@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import { getAuthFlag, getToken } from "../providers/redux/auth";
 import { connect } from "react-redux";
 import axios from "axios";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
-import InputBase from "@material-ui/core/InputBase";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  TableSortLabel,
+  InputBase,
+  IconButton,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import IconButton from "@material-ui/core/IconButton";
 import "./Table.css";
 
 const TableInner = (props) => {
-  const { token, isAuthorized } = props;
+  const { token } = props;
 
   const [usersPrimal, setUsersPrimal] = useState([]);
 
@@ -28,7 +30,7 @@ const TableInner = (props) => {
 
   const getList = async (token) => {
     var result = await axios.get(
-      "http://emphasoft-test-assignment.herokuapp.com/api/v1/users/",
+      "https://emphasoft-test-assignment.herokuapp.com/api/v1/users/",
       {
         headers: {
           Accept: "application/json",
@@ -45,7 +47,6 @@ const TableInner = (props) => {
   }, []);
 
   const handleRequestSort = (event) => {
-    console.log(event);
     const isAsc = order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     sortArray(order);
