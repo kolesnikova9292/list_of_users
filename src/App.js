@@ -19,7 +19,7 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <BrowserRouter basename={"/list_of_users"}>
+      <BrowserRouter>
         <Switch>
           <PrivateRoute
             path={`${process.env.PUBLIC_URL}/table`}
