@@ -19,7 +19,7 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <HashRouter basename="/">
+      <HashRouter basename="/list_of_users">
         <Switch>
           <PrivateRoute
             path="/table"
