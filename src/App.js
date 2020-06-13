@@ -19,18 +19,22 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename={"/list-of-users"}>
         <Switch>
           <PrivateRoute
-            path="/table"
+            path={`${process.env.PUBLIC_URL}/table`}
             component={Table}
             exact
             isAuthorized={isAuthorized}
-            loginPath="/"
+            loginPath={`${process.env.PUBLIC_URL}/`}
           />
-          <Route path="/" render={(props) => <Login {...props} />} exact />
           <Route
-            path="/"
+            path={`${process.env.PUBLIC_URL}/`}
+            render={(props) => <Login {...props} />}
+            exact
+          />
+          <Route
+            path={`${process.env.PUBLIC_URL}/`}
             component={isAuthorized === true ? Table : Login}
             exact
           />
