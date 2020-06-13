@@ -13,13 +13,19 @@ import { Table } from "./table";
 import { PrivateRoute } from "./PrivateRoute";
 import { connect } from "react-redux";
 import { getAuthFlag } from "./providers/redux/auth";
+import { useRouterHistory } from "react-router";
 
 const App = (props) => {
   const { isAuthorized } = props;
 
+  /*const basename = "test";
+  const history = useRouterHistory(createHistory)({
+    basename,
+  });*/
+
   return (
     <div className="App">
-      <HashRouter basename="/list_of_users">
+      <HashRouter basename="/">
         <Switch>
           <PrivateRoute
             path="/table"
