@@ -22,23 +22,19 @@ const App = (props) => {
       <BrowserRouter>
         <Switch>
           <PrivateRoute
-            path={`${process.env.PUBLIC_URL}/table`}
+            path="/table"
             component={Table}
             exact
             isAuthorized={isAuthorized}
-            loginPath={`${process.env.PUBLIC_URL}/`}
+            loginPath="/"
           />
+          <Route path="/" render={(props) => <Login {...props} />} exact />
           <Route
-            path={`${process.env.PUBLIC_URL}/`}
-            render={(props) => <Login {...props} />}
-            exact
-          />
-          <Route
-            path={`${process.env.PUBLIC_URL}/`}
+            path="/"
             component={isAuthorized === true ? Table : Login}
             exact
           />
-          <Redirect to={`${process.env.PUBLIC_URL}/`} />
+          <Redirect to="/" />
         </Switch>
       </BrowserRouter>
     </div>
