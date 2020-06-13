@@ -18,7 +18,7 @@ const App = (props) => {
   const { isAuthorized } = props;
 
   return (
-    <HashRouter basename="/">
+    <HashRouter basename="">
       <div className="App">
         <BrowserRouter>
           <Switch>
