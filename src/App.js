@@ -18,28 +18,26 @@ const App = (props) => {
   const { isAuthorized } = props;
 
   return (
-    <HashRouter basename="">
-      <div className="App">
-        <BrowserRouter>
-          <Switch>
-            <PrivateRoute
-              path="/table"
-              component={Table}
-              exact
-              isAuthorized={isAuthorized}
-              loginPath="/"
-            />
-            <Route path="/" render={(props) => <Login {...props} />} exact />
-            <Route
-              path="/"
-              component={isAuthorized === true ? Table : Login}
-              exact
-            />
-            <Redirect to="/" />
-          </Switch>
-        </BrowserRouter>
-      </div>
-    </HashRouter>
+    <div className="App">
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Switch>
+          <PrivateRoute
+            path="/table"
+            component={Table}
+            exact
+            isAuthorized={isAuthorized}
+            loginPath="/"
+          />
+          <Route path="/" render={(props) => <Login {...props} />} exact />
+          <Route
+            path="/"
+            component={isAuthorized === true ? Table : Login}
+            exact
+          />
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 };
 
