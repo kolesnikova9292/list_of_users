@@ -38,7 +38,7 @@ const App = (props) => {
             component={isAuthorized === true ? Table : Login}
             exact
           />
-          <Redirect to="/" />
+          <Redirect to={`${process.env.PUBLIC_URL}/`} />
         </Switch>
       </BrowserRouter>
     </div>
