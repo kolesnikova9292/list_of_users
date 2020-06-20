@@ -1,5 +1,4 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useEffect } from "react";
 import "./App.css";
 import {
   Route,
@@ -8,15 +7,35 @@ import {
   BrowserRouter,
   HashRouter,
 } from "react-router-dom";
-import { Login } from "./login";
-import { Table } from "./table";
-import { PrivateRoute } from "./PrivateRoute";
+import ChoosePage from "./pages/ChoosePage";
+import Header from "./header/Header";
 import { connect } from "react-redux";
-import { getAuthFlag } from "./providers/redux/auth";
-import { useRouterHistory } from "react-router";
+//import { getAuthFlag } from "./providers/redux/auth";
+import { logout } from "./providers/redux/auth";
+import AlertDialog from "./pages/table/AlertDialog";
 
 const App = (props) => {
-  const { isAuthorized } = props;
+  const { logout } = props;
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleLogoutTry = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleYes = () => {
+    setOpen(false);
+    logout();
+    localStorage.removeItem("token");
+  };
+
+  const handleNo = () => {
+    setOpen(false);
+  };
 
   /*const basename = "test";
   const history = useRouterHistory(createHistory)({
@@ -26,7 +45,30 @@ const App = (props) => {
   return (
     <div className="App">
       <HashRouter basename="/">
-        <Switch>
+        <Header handleLogoutTry={handleLogoutTry} />
+        <ChoosePage />
+        <AlertDialog
+          open={open}
+          handleClose={handleClose}
+          handleNo={handleNo}
+          handleYes={handleYes}
+        />
+      </HashRouter>
+    </div>
+  );
+};
+
+/*const mapStateToProps = (state) => {
+  return {
+    isAuthorized: getAuthFlag(state),
+  };
+};*/
+
+const mapDispatchToProps = { logout };
+
+export default connect(null, mapDispatchToProps)(App);
+
+/*<Switch>
           <PrivateRoute
             path="/table"
             component={Table}
@@ -41,16 +83,4 @@ const App = (props) => {
             exact
           />
           <Redirect to="/" />
-        </Switch>
-      </HashRouter>
-    </div>
-  );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    isAuthorized: getAuthFlag(state),
-  };
-};
-
-export default connect(mapStateToProps)(App);
+        </Switch>*/

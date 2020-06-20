@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAuthFlag, getToken } from "../providers/redux/auth";
+import { getAuthFlag, getToken } from "../../providers/redux/auth";
 import { connect } from "react-redux";
 import axios from "axios";
 import {
@@ -43,6 +43,9 @@ const TableInner = (props) => {
   };
 
   useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", token);
+    }
     getList(token);
   }, []);
 
@@ -65,7 +68,7 @@ const TableInner = (props) => {
     setSearchInput(e.target.value);
   };
 
-  const filterUsers = (e) => {
+  const filterUsers = () => {
     let newArr = [...usersPrimal];
     setUsers(newArr);
     setUsers(
@@ -91,6 +94,12 @@ const TableInner = (props) => {
           inputProps={{ "aria-label": "search google maps" }}
           value={searchInput}
           onChange={handleChangeSearchInput}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              filterUsers();
+            }
+          }}
         />
         <IconButton aria-label="search" onClick={filterUsers}>
           <SearchIcon />

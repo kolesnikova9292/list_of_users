@@ -1,11 +1,6 @@
 .tableInner {
   max-width: 800px;
   margin: 0 auto;
-  /* border-collapse: separate !important;
-  border-spacing: 5px 5px !important;*/
-}
-
-.tableConteiner {
 }
 
 .table-head {

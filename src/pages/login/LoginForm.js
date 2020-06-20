@@ -7,7 +7,8 @@ import {
   getAuthFlag,
   getError,
   fetchAuthRequest,
-} from "../providers/redux/auth";
+  logout,
+} from "../../providers/redux/auth";
 import "./LoginForm.css";
 
 const LoginForm = (props) => {
@@ -27,7 +28,7 @@ const LoginForm = (props) => {
   const handleLogIn = async (data) => {
     const { login, password } = data;
     await fetchAuthRequest({ login, password });
-    props.history.push("/table");
+    //props.history.push("/table");
   };
 
   const handleCloseSnackBar = () => {
@@ -95,7 +96,7 @@ const LoginForm = (props) => {
   );
 };
 
-const mapDispatchToProps = { fetchAuthRequest };
+const mapDispatchToProps = { fetchAuthRequest, logout };
 
 const mapStateToProps = (state) => {
   return {

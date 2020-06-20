@@ -1,7 +1,7 @@
 import React from "react";
 import TableInner from "./TableInner";
 
-export const Table = (props) => {
+const Table = (props) => {
   return (
     <>
       <h1>Пользователи</h1>
@@ -9,3 +9,5 @@ export const Table = (props) => {
     </>
   );
 };
+
+export default Table;

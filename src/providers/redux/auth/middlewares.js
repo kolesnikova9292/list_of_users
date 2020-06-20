@@ -1,7 +1,7 @@
 import { fetchAuthRequest, fetchAuthSucces, fetchAuthFailure } from "./actions";
 import axios from "axios";
 
-export const loftTaxiMiddleware = (store) => (next) => async (action) => {
+export const emphasoftMiddleware = (store) => (next) => async (action) => {
   if (action.type === fetchAuthRequest.toString()) {
     await axios
       .post(

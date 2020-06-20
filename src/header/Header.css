@@ -1,0 +1,12 @@
+.my_header {
+  background-color: white !important;
+}
+
+.logout_button {
+  position: relative;
+}
+
+.outer_div {
+  position: absolute;
+  right: 10px;
+}
